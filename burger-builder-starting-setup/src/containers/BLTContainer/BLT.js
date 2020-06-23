@@ -4,6 +4,8 @@ import BLTParts from "../../Components/BLTComponent/BLT"
 import AllControls from "../../containers/foodControls"
 import { Container, Button, Row, Col } from 'react-bootstrap'
 import CheckoutModal from '../../Components/Modal/SummaryModal'
+import API from '../../Utils/APIFirebase'
+
 
 const ingredientCost = {
     Avocado: 5,
@@ -14,45 +16,60 @@ const ingredientCost = {
 
 class BLT extends Component {
     state = {
-        ingredient: {
-            Avocado: 0,
-            Bacon: 0,
-            Egg: 0
+        ingredient: {},
 
-        },
+        //     Avocado: 0,
+        //     Bacon: 0,
+        //     Egg: 0
+
+        // 
+
         sandwichPrice: 10,
         canCheckout: false,
-        showModal:false
-       
-        
+        showModal: false
+
+
     }
-    openModal = () =>{
+    openModal = () => {
         this.setState({
             showModal: true
         })
     }
 
-    closeModal = () =>{
+    closeModal = () => {
         this.setState({
             showModal: false
         })
     }
 
+    componentDidMount() {
+        this.getIngredients()
+    }
+
+    getIngredients = () => {
+        API.fetchIgredients('/ingredients.json')
+            .then(res => this.setState({
+                ingredient: res.data
+            }))
+                .catch(error => console.log(error))
 
 
-    
-    canCheckout = (ingredient) =>{
-      const total =  Object.keys(ingredient).map(item =>
-            {
-                return ingredient[item]
-            }).reduce((total, current)=> {
-                return total + current
-            },0)
+    }
 
-            this.setState({
-                canCheckout: total > 0
-            })
-           
+
+
+
+    canCheckout = (ingredient) => {
+        const total = Object.keys(ingredient).map(item => {
+            return ingredient[item]
+        }).reduce((total, current) => {
+            return total + current
+        }, 0)
+
+        this.setState({
+            canCheckout: total > 0
+        })
+
 
     }
 
@@ -64,7 +81,7 @@ class BLT extends Component {
     //   })
     // }
 
-    
+
 
 
     addIngredient = (item) => {
@@ -82,8 +99,8 @@ class BLT extends Component {
             sandwichPrice: newPrice
         })
         this.canCheckout(newIngred)
-    
-       
+
+
 
 
     }
@@ -110,28 +127,52 @@ class BLT extends Component {
             sandwichPrice: updatedPrice,
         })
         this.canCheckout(updatedQuantity)
-      
+
 
 
     }
 
-    
+    continuetoCheckout = () => {
+        const checkoutData = {
+            ingredients: this.state.ingredients,
+            totalPrice: this.state.sandwichPrice,
+            userInfo: {
+                name: "Juliet George",
+                address: " The white house",
+                paymentMethod: {
+                    method: "visa",
+                    number: 4546484947474844,
+                    expiration: new Date(),
+                    email: "julietfake@gmail.com"
+                }
+
+            }
+        }
+
+        API.instance()
+        API.add("/checkout.json", checkoutData)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+
+    }
+
+
     render() {
-    
-            const currentCount = {
-                ...this.state.ingredient
-            }
-            for(var item in currentCount){
-         currentCount[item] = currentCount[item] === 0
-         console.log(currentCount)
-                
-            }
-    
+
+        const currentCount = {
+            ...this.state.ingredient
+        }
+        for (var item in currentCount) {
+            currentCount[item] = currentCount[item] === 0
+            console.log(currentCount)
+
+        }
+
         return (
             <div>
-                 
+
                 <Aux>
-               
+
                     <BLTParts ingredient={this.state.ingredient}></BLTParts>
 
 
@@ -148,15 +189,16 @@ class BLT extends Component {
 
                         />
                     </Col>
-                    
+
                     <Button onClick={this.openModal} disabled={!this.state.canCheckout} variant="info" size="large"> Order Summary </Button>
                     <CheckoutModal
-                    total={this.state.sandwichPrice}
-                   sandwich={this.state.ingredient}
-                    show={this.state.showModal}
-                    onHide={this.closeModal}
-                    /> 
-                    
+                        onClick={this.continuetoCheckout}
+                        total={this.state.sandwichPrice}
+                        sandwich={this.state.ingredient}
+                        show={this.state.showModal}
+                        onHide={this.closeModal}
+                    />
+
 
                 </Container>
 

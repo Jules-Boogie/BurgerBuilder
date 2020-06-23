@@ -2,6 +2,7 @@
   "name": "burger-builder-starting-setup",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://mydrivethru-b496b.firebaseio.com/",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
@@ -35,6 +36,7 @@
     "react": "^16.11.0",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.11.0",
+    "react-router-dom": "^5.2.0",
     "resolve": "1.6.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
@@ -61,7 +63,7 @@
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
     ],
     "testEnvironment": "node",
-    "testURL": "http://localhost",
+    "testURL": "https://localhost",
     "transform": {
       "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",

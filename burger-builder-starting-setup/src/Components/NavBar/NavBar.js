@@ -10,8 +10,8 @@ function navigationBar() {
                     Juliet's BLT</Navbar.Brand>
                 <Nav className="ml-auto">
                     <Nav.Link  href="#home">Menu</Nav.Link>
-                    <Nav.Link  href="#home">Burger Builder</Nav.Link>
-                    <Nav.Link  href="#home">Checkout</Nav.Link>
+                    <Nav.Link  href="/">Burger Builder</Nav.Link>
+                    <Nav.Link  href="/checkout">Checkout</Nav.Link>
                 </Nav>
             </Navbar>
         

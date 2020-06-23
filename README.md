@@ -29,6 +29,8 @@ reduce((total, current) =>{
 takes in an argument that specifies where an array should be sliced and returns a new array with the sliced elements 
 ```
 var sampleArr = [1,2,3,4,5,6,7,8,9]
+var newArr = sampleArr.slice(0,5)
+returns [1,2,3,4,5,6]
 
 ```
 
@@ -37,4 +39,8 @@ var sampleArr = [1,2,3,4,5,6,7,8,9]
 object.keys()
 concat()
 
+
+
+Database / API (Firebase and Axios)
+axios : https://kapeli.com/cheat_sheets/Axios.docset/Contents/Resources/Documents/index
 
