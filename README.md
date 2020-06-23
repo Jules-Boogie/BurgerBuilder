@@ -33,6 +33,54 @@ var newArr = sampleArr.slice(0,5)
 returns [1,2,3,4,5,6]
 
 ```
+### encodeURIComponent()
+
+### Array.join(separator)
+join elements in an array with a separator. This method was used to join the data I was passing into the url
+
+
+
+### this.props.history.push({
+    pathname: where we want to send data to
+    search: the data we want to pass..encoded using encodeURIComponent() eg search:'?query=abc'
+})
+
+```
+const data = []
+
+        for (var item in this.state.ingredient){
+            data.push(encodeURIComponent(item) + "=" + encodeURIComponent(this.state.ingredient[item]))
+        }
+        console.log(data)
+            const queryParams = data.join('&')
+        console.log(queryParams)
+            this.props.history.push(
+                {
+                    pathname:"/checkout",
+                    search:'?' + queryParams
+                }
+            )
+
+    }
+```
+
+
+### URLSearchParams()
+
+A constructor that creates an object with the query string
+
+
+### entries()
+
+returns an array of key value pairs for every entry in the search params
+so if the search param was 'query = abc'
+then entries will convert it to ['query', 'abc']
+
+### Use withRouter from react-router-dom to access props in a function component. 
+
+### windows.location.search gives you access to query params or 
+
+### props.location after inporting withRouter from reactrouterDom and wrapping the export default term with withRouter()
 
 
 
@@ -44,3 +92,47 @@ concat()
 Database / API (Firebase and Axios)
 axios : https://kapeli.com/cheat_sheets/Axios.docset/Contents/Resources/Documents/index
 
+
+
+## Difficulties in the Project
+
+### URLSearchParams
+
+This was not working for my for me. The code below kept returning NaN
+
+```
+// const search = (props.location.search)
+ // const data = new URLSearchParams(search)
+
+        // const ingredients = {}
+        // for ( let queryparams in search.entries()){
+        //     ingredients[queryparams[0]] = +queryparams[1]
+        // }
+        // console.log(ingredients)
+
+```
+so I decided to use the slice() and split() methods to produce the expected outcome
+
+```
+useEffect(() => {
+
+        // my url = http://localhost:3000/checkout?Avocado=1&Bacon=0&Egg=0
+        // props.location.search = ?Avocado=1&Bacon=0&Egg=0
+        const search = (props.location.search).slice(1)
+        console.log(search)
+        const searchs = search.split("&")
+        const object = {}
+        for (var i in searchs){
+        const test = searchs[i].split("=")
+        object[test[0]] = test[1]
+        console.log(test)
+        }
+        console.log(object)
+        
+      setIngredients(object)
+       
+     
+
+    },[])
+
+``

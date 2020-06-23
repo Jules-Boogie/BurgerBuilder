@@ -15,6 +15,9 @@ const ingredientCost = {
 }
 
 class BLT extends Component {
+
+ 
+
     state = {
         ingredient: {},
 
@@ -133,26 +136,43 @@ class BLT extends Component {
     }
 
     continuetoCheckout = () => {
-        const checkoutData = {
-            ingredients: this.state.ingredients,
-            totalPrice: this.state.sandwichPrice,
-            userInfo: {
-                name: "Juliet George",
-                address: " The white house",
-                paymentMethod: {
-                    method: "visa",
-                    number: 4546484947474844,
-                    expiration: new Date(),
-                    email: "julietfake@gmail.com"
-                }
+        // const checkoutData = {
+        //     ingredients: this.state.ingredients,
+        //     totalPrice: this.state.sandwichPrice,
+        //     userInfo: {
+        //         name: "Juliet George",
+        //         address: " The white house",
+        //         paymentMethod: {
+        //             method: "visa",
+        //             number: 4546484947474844,
+        //             expiration: new Date(),
+        //             email: "julietfake@gmail.com"
+        //         }
 
-            }
+        //     }
+        // }
+
+        // API.instance()
+        // API.add("/checkout.json", checkoutData)
+        //     .then(res => console.log(res.data))
+        //     .catch(err => console.log(err))
+            // window.location.replace("/checkout")
+        const data = []
+
+        for (var item in this.state.ingredient){
+            data.push(encodeURIComponent(item) + "=" 
+            + encodeURIComponent(this.state.ingredient[item]))
         }
+        console.log(data)
+            const queryParams = data.join('&')
+        console.log(queryParams)
 
-        API.instance()
-        API.add("/checkout.json", checkoutData)
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err))
+            this.props.history.push(
+                {
+                    pathname:"/checkout",
+                    search:'?' + queryParams
+                }
+            )
 
     }
 

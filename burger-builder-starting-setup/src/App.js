@@ -9,15 +9,16 @@ class App extends Component {
   render() {
     return (
       <Router>
-      <div >
-        <Layout>
-          <Switch>
-            <Route exact={true} path="/">
-            <BLT/>
-            </Route>
-            <Route exact={true} path="/checkout">
-              <Checkout/>
-            </Route>
+        <div >
+          <Layout>
+            <Switch>
+              <Route exact={true} path="/" component={BLT} />
+
+
+              <Route exact={true} path="/checkout">
+                <Checkout/>
+                </Route>
+           
           </Switch>
           
         </Layout>
