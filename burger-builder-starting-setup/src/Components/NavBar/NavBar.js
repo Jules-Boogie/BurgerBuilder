@@ -12,6 +12,7 @@ function navigationBar() {
                     <Nav.Link  href="#home">Menu</Nav.Link>
                     <Nav.Link  href="/">Burger Builder</Nav.Link>
                     <Nav.Link  href="/checkout">Checkout</Nav.Link>
+                    <Nav.Link  href="/orders"> My Orders</Nav.Link>
                 </Nav>
             </Navbar>
         

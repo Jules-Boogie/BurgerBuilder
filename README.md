@@ -136,3 +136,16 @@ useEffect(() => {
     },[])
 
 ``
+
+Object.entries()
+
+```
+const numbers = {
+  one: 1,
+  two: 2,
+};
+
+Object.entries(numbers);
+// [ ['one', 1], ['two', 2] ]
+
+```

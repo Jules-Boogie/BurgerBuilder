@@ -18,6 +18,9 @@ export default {
  },
  fetchIgredients: function(path){
      return axios.get(baseURL+path)
+ },
+ fetchOrders: function(path){
+     return axios.get(baseURL+path)
  }
 
 

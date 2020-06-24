@@ -164,7 +164,9 @@ class BLT extends Component {
             + encodeURIComponent(this.state.ingredient[item]))
         }
         console.log(data)
+            data.push("price=" + this.state.sandwichPrice)
             const queryParams = data.join('&')
+            
         console.log(queryParams)
 
             this.props.history.push(
