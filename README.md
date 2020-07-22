@@ -1,14 +1,20 @@
 ## Online Drive Through
+Very simple application for a user to make a meal and order. 
+View App here: https://drive.google.com/file/d/13TSN4m6qM9ebXcET8ss_nn52E-sO9KMn/view
 
 
-## Very simple application for a user to make a meal and order. 
 
 
-## Javascript 
 
-### Method 
+## Tools Used
+- Javascript as main language
+- React as FrontEnd Framework
+- FireBase as BackEnd/DataBase
 
-#### Reduce()
+
+## Code Highlights and Learning along the way
+
+### Reduce()
 Array function that takes in a function as input, recieves two arguments. The total value and the current value. You can also add an initial value eg: an empty array
 ```
 reduce((total, current) =>{
