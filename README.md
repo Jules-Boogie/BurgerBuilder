@@ -2,7 +2,7 @@
 Very simple application for a user to make a meal and order. This app was created to practice using react router and to retrieve data from the url and pass on to another page. Firebase was used as server and database. 
 
 
-View App here: https://drive.google.com/file/d/13TSN4m6qM9ebXcET8ss_nn52E-sO9KMn/view
+View App Video here: https://drive.google.com/file/d/13TSN4m6qM9ebXcET8ss_nn52E-sO9KMn/view
 
 ## App Demo:
  ![alt-text](https://github.com/Jules-Boogie/Juliet-s-Drive-Through/blob/master/burger-builder-starting-setup/public/React%20App.gif)
